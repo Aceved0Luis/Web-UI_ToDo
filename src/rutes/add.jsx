@@ -12,7 +12,7 @@ export function Add(){
     const [date, setDate] = useLocalStorage('date','')
     const datos = useContext(TodoContext);
     const navigate = useNavigate();
-    
+        
     const handleSubmit = (e) => {
         e.preventDefault();
         if (name.length > 0 && description.length > 0 && date.length > 0) {
@@ -22,12 +22,10 @@ export function Add(){
             setName("")
             setDescription("")
             setDate("")
-            const newTodos = [...datos, {title:nombre,
+            const newTodos = [...datos[0], {title:nombre,
                 description:descripcion,
                 time:fecha}]
-            //como se le cambia el estado, valor del contexto de forma global?
-            //useReduce?
-            //setTodo = newTodos;
+            //console.log(newTodos)
             navigate("/");
         }else{
             alert("Debes llenar todos los campos")
