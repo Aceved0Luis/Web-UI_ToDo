@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/input";
-import { Todos } from "../constants/todos";
 import { useLocalStorage } from "../uselocalstorage";
+import { useContext } from "react";
+import { TodoContext } from "../context";
+
 
 export function Add(){
+
     const [name, setName] = useLocalStorage('name','')
     const [description, setDescription] = useLocalStorage('description','')
     const [date, setDate] = useLocalStorage('date','')
-    const [datos, setDatos] = useLocalStorage('datos',Todos)
+    const datos = useContext(TodoContext);
     const navigate = useNavigate();
-
-    //console.log(datos)
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,7 +25,9 @@ export function Add(){
             const newTodos = [...datos, {title:nombre,
                 description:descripcion,
                 time:fecha}]
-            setDatos(newTodos)
+            //como se le cambia el estado, valor del contexto de forma global?
+            //useReduce?
+            //setTodo = newTodos;
             navigate("/");
         }else{
             alert("Debes llenar todos los campos")
