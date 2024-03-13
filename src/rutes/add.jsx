@@ -25,7 +25,9 @@ export function Add(){
             const newTodos = [...datos[0], {title:nombre,
                 description:descripcion,
                 time:fecha}]
-            //console.log(newTodos)
+            //este debe ser el valor nuevo de los ToDos
+            console.log(newTodos)
+            
             navigate("/");
         }else{
             alert("Debes llenar todos los campos")
