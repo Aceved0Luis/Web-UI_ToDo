@@ -1,10 +1,12 @@
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { TodoContext } from '../context'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteAll } from '../store/todoSlice';
+import { useEffect } from 'react';
 
 export function Home(){    
     
-    const value = useContext(TodoContext)
+    const value = useSelector((state)=> (state.todoReducer))
+    const dispatch = useDispatch();
 
     return (
         <>
@@ -20,6 +22,7 @@ export function Home(){
                 )) : <li>sin datos...</li>}
             </ul>
             <Link to="/add"><button className="btn">Add TODO</button></Link>
+            <button className="btn" onClick={() => dispatch(deleteAll())}>Delete TODOS</button>
         </div>
         </>
     )
