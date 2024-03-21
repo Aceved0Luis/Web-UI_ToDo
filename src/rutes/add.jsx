@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/input";
 import { useLocalStorage } from "../uselocalstorage";
-import { useContext } from "react";
-import { TodoContext } from "../context";
+import { useDispatch, useSelector } from 'react-redux'
+import { add } from '../store/todoSlice';
 
 
 export function Add(){
@@ -10,23 +10,25 @@ export function Add(){
     const [name, setName] = useLocalStorage('name','')
     const [description, setDescription] = useLocalStorage('description','')
     const [date, setDate] = useLocalStorage('date','')
-    const datos = useContext(TodoContext);
+    const data = useSelector((state)=> (state.todoReducer))
+    console.log(data)
+    const dispatch = useDispatch()
     const navigate = useNavigate();
         
     const handleSubmit = (e) => {
         e.preventDefault();
         if (name.length > 0 && description.length > 0 && date.length > 0) {
-            const nombre=name
-            const descripcion=description
-            const fecha=date
             setName("")
             setDescription("")
             setDate("")
-            const newTodos = [...datos[0], {title:nombre,
-                description:descripcion,
-                time:fecha}]
-            //este debe ser el valor nuevo de los ToDos
-            console.log(newTodos)
+
+            dispatch(add(
+                {
+                    title:name,
+                    description:description,
+                    time:date
+                })
+            )
             
             navigate("/");
         }else{
