@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteAll } from '../store/todoSlice';
-import { useEffect } from 'react';
 
 export function Home(){    
     
