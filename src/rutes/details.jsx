@@ -1,24 +1,33 @@
 import { Link,useParams } from "react-router-dom"
 import { Input } from "../components/input"
-import { useContext } from "react";
-import { TodoContext } from "../context";
+import { useDispatch, useSelector } from 'react-redux'
+import { detail } from '../store/todoSlice';
+import { useEffect, useState } from "react";
 
 
 export function Details(){
-
+    
+    const data = useSelector((state)=> (state.todoReducer))
+    const dispatch = useDispatch()
     const parameters = useParams();
-    const context = useContext(TodoContext)
-    const todoDetails = context[0].filter(todo => todo.title === parameters.id)
+
+    useEffect(()=>{
+        
+        dispatch(detail({
+            id: parameters.id
+        }))
+
+    },[])
 
     return(
         <>
         <h1>Details TODO</h1>
         <div className="container">
-            {todoDetails.map((todo) => (
-                <div className="add" key={todo.title}>
-                    <Input tipo={"text"} valor={todo.title} block={true}/>
-                    <textarea value={todo.description} disabled={true} />
-                    <Input tipo={"text"} valor={todo.time} block={true}/>
+            {data.map((todo) => (
+                <div className="add">
+                    <Input tipo={"text"} valor={data.title} block={true}/>
+                    <textarea value={data.description} disabled={true} />
+                    <Input tipo={"text"} valor={data.time} block={true}/>
                 </div>))
             }
             <Link to="/"><button className="btn-enviar">Volver</button></Link>

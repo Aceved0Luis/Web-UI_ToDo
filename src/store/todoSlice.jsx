@@ -16,7 +16,7 @@ export const todoSlice = createSlice({
     ]
     },
     detail: (state, action) => {
-      return  state.filter(todo => todo.id !== action.payload)
+      return  [state.filter(todo => todo.title === action.payload.id)]
     },
     deleteAll: (state) => {
       return state.splice()

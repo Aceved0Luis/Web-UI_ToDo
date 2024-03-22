@@ -11,7 +11,6 @@ export function Add(){
     const [description, setDescription] = useLocalStorage('description','')
     const [date, setDate] = useLocalStorage('date','')
     const data = useSelector((state)=> (state.todoReducer))
-    console.log(data)
     const dispatch = useDispatch()
     const navigate = useNavigate();
         
