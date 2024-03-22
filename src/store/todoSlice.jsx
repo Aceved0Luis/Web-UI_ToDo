@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { valueInit } from '../constants/todos-init'
 
-const initialState = []
+const initialState = valueInit
 
 export const todoSlice = createSlice({
   name: 'todo',
@@ -16,7 +17,7 @@ export const todoSlice = createSlice({
     ]
     },
     detail: (state, action) => {
-      return  [state.filter(todo => todo.title === action.payload.id)]
+      return state.filter(todo => todo.title === action.payload.id)
     },
     deleteAll: (state) => {
       return state.splice()

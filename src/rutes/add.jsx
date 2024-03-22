@@ -10,7 +10,6 @@ export function Add(){
     const [name, setName] = useLocalStorage('name','')
     const [description, setDescription] = useLocalStorage('description','')
     const [date, setDate] = useLocalStorage('date','')
-    const data = useSelector((state)=> (state.todoReducer))
     const dispatch = useDispatch()
     const navigate = useNavigate();
         

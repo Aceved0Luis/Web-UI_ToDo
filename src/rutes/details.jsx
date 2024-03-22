@@ -12,23 +12,22 @@ export function Details(){
     const parameters = useParams();
 
     useEffect(()=>{
-        
+        console.log(
         dispatch(detail({
             id: parameters.id
-        }))
-
+        })))
     },[])
-
+    
     return(
         <>
         <h1>Details TODO</h1>
         <div className="container">
-            {data.map((todo) => (
-                <div className="add">
-                    <Input tipo={"text"} valor={data.title} block={true}/>
-                    <textarea value={data.description} disabled={true} />
-                    <Input tipo={"text"} valor={data.time} block={true}/>
-                </div>))
+            {data ? data.map((todo) => (
+                <div className="add" key={todo.title}>
+                    <Input tipo={"text"} valor={todo.title} block={true}/>
+                    <textarea value={todo.description} disabled={true} />
+                    <Input tipo={"text"} valor={todo.time} block={true}/>
+                </div>)):<div>paso algo...</div>
             }
             <Link to="/"><button className="btn-enviar">Volver</button></Link>
         </div>
