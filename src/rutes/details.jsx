@@ -2,7 +2,7 @@ import { Link,useParams } from "react-router-dom"
 import { Input } from "../components/input"
 import { useDispatch, useSelector } from 'react-redux'
 import { detail } from '../store/todoSlice';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 
 export function Details(){
@@ -12,10 +12,9 @@ export function Details(){
     const parameters = useParams();
 
     useEffect(()=>{
-        console.log(
         dispatch(detail({
             id: parameters.id
-        })))
+        }))
     },[])
     
     return(

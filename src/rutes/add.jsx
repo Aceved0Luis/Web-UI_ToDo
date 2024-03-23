@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Input } from "../components/input";
 import { useLocalStorage } from "../uselocalstorage";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { add } from '../store/todoSlice';
 
 
